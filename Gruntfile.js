@@ -58,8 +58,69 @@ module.exports = function (grunt) {
             unit: { // start testing server that listens for code updates
                 configFile: 'tests/karma.conf.js',
                 singleRun: false,
-                browsers: ['ChromeCanary']
+                browsers: ['PhantomJS']
             }
+        },
+        connect: {
+          options: {
+            port: 9000,
+            // Change this to '0.0.0.0' to access the server from outside.
+            hostname: 'localhost',
+            livereload: 35729
+          },
+          livereload: {
+            options: {
+              open: true,
+              base: [
+                '.tmp',
+                'source'
+              ]
+            }
+          },
+          test: {
+            options: {
+              port: 9001,
+              base: [
+                '.tmp',
+                'tests',
+                'source'
+              ]
+            }
+          },
+          dist: {
+            options: {
+              base: 'build'
+            }
+          }
+        },
+        watch: {
+          // coffee: {
+          //   files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
+          //   tasks: ['coffee:dist']
+          // },
+          // coffeeTest: {
+          //   files: ['test/spec/{,*/}*.coffee'],
+          //   tasks: ['coffee:test']
+          // },
+          compass: {
+            files: ['source/scss/{,*/}*.{scss,sass}'],
+            tasks: ['compass:main']
+          },
+          // styles: {
+          //   files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+          //   tasks: ['copy:styles', 'autoprefixer']
+          // },
+          livereload: {
+            options: {
+              livereload: '<%= connect.options.livereload %>'
+            },
+            files: [
+              'source/{,*/}*.html',
+              '.tmp/styles/{,*/}*.css',
+              '{.tmp, source/js/{,*/}*.js',
+              'source/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+            ]
+          }
         }
     });
 
@@ -67,11 +128,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-karma');
 
     grunt.registerTask('build-js', ['copy', 'requirejs', 'uglify']);
     grunt.registerTask('build-css', ['compass']);
     grunt.registerTask('build', ['build-js', 'build-css']);
+    grunt.registerTask('server', ['build', 'connect:livereload', 'watch']);
 
     grunt.registerTask('default', ['build']);
 
