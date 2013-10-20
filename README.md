@@ -1,5 +1,16 @@
-# Angularjs Requirejs Seed
+# Rep Star
 
+A nearly backendless HTML5 app to manage stared repositories of Github and more.
+
+## Development Status
+
+Early stage. Basically nothing is completed yet.
+
+License
+--------
+
+MIT Licence, see LICENSE.
+Copyright (c) 2013 Utensil Song (https://github.com/utensil)
 
 ## Installation
 
