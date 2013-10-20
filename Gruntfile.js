@@ -9,7 +9,7 @@ module.exports = function (grunt) {
             }
         },
         copy: {
-            main: {
+            dist: {
                 files: [
                     {
                         expand: true,
@@ -28,7 +28,23 @@ module.exports = function (grunt) {
                         cwd: 'source/js/libs/',
                         src: ['**/*'],
                         dest: 'build/js/libs/'
-                     }
+                     },
+                    {
+                      expand: true,
+                      cwd: 'assets/',
+                      src: ['**/*'],
+                      dest: 'build/assets/'
+                    }
+                ]
+            },
+            livereload: {
+                files: [
+                    {
+                      expand: true,
+                      cwd: 'assets/',
+                      src: ['**/*'],
+                      dest: '.tmp/assets/'
+                    }
                 ]
             }
         },
@@ -50,6 +66,21 @@ module.exports = function (grunt) {
                   config: 'config.rb'
               }
             }
+        },
+        coffee: {
+          options: {
+            sourceMap: false,
+            sourceRoot: ''
+          },
+          compile: {
+            files: [{
+              expand: true,
+              cwd: 'source/coffee',
+              src: '{,*/}*.coffee',
+              dest: 'source/js/cf/',
+              ext: '.js'
+            }]
+          }
         },
         karma: {
             ci: { // runs tests one time in PhantomJS, good for continuous integration
@@ -94,17 +125,17 @@ module.exports = function (grunt) {
           }
         },
         watch: {
-          // coffee: {
-          //   files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
-          //   tasks: ['coffee:dist']
-          // },
+          coffee: {
+            files: ['source/coffee/{,*/}*.coffee'],
+            tasks: ['coffee:compile']
+          },
           // coffeeTest: {
           //   files: ['test/spec/{,*/}*.coffee'],
           //   tasks: ['coffee:test']
           // },
           compass: {
             files: ['source/scss/{,*/}*.{scss,sass}'],
-            tasks: ['compass:main']
+            tasks: ['compass:main', 'copy:livereload']
           },
           // styles: {
           //   files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
@@ -130,12 +161,17 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('build-js', ['copy', 'requirejs', 'uglify']);
+    grunt.registerTask('build-js', ['coffee:compile', 'requirejs', 'uglify']);
+    grunt.registerTask('live', ['compass', 'copy:livereload', 'coffee:compile']);
     grunt.registerTask('build-css', ['compass']);
-    grunt.registerTask('build', ['build-js', 'build-css']);
-    grunt.registerTask('server', ['build', 'connect:livereload', 'watch']);
+    grunt.registerTask('build', ['build-js', 'build-css', 'copy:dist']);
+    grunt.registerTask('server', 
+      ['live', 
+       'connect:livereload',
+       'watch']);
 
     grunt.registerTask('default', ['build']);
 

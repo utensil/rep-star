@@ -4,3 +4,5 @@ nginx.conf
 errors.log
 build
 node_modules
+source/js/cf
+.tmp
