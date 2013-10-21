@@ -5,4 +5,5 @@ errors.log
 build
 node_modules
 source/js/cf
+source/js/libs
 .tmp

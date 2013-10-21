@@ -5,5 +5,14 @@
  */
 define([
     'controllers/home-ctrl',
-    'cf/testcf'
-], function () {});
+    'cf/testcf',
+    'lodash',
+    'oauth',
+    'oboe'
+], function (home_ctrl, test_cf, _, oauth, oboe) {
+  console.log(home_ctrl);
+  console.log(test_cf);
+  console.log(_);
+  console.log(oauth);
+  console.log(oboe);
+});

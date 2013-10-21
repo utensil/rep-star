@@ -5,7 +5,16 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         requirejs: {
             compile: {
-                options: grunt.file.readJSON('source/js/build-config.json')
+                options: {
+                  "mainConfigFile"        : "source/js/main.js",
+                  "wrap"                  : true,
+                  "name"                  : "main",
+                  "optimize"              : "none",
+                  "baseUrl"               : "source/js",
+                  "out"                   : "build/js/main-src.js",
+                  "disabled/exclude"      : ["main.js"],
+                  "disabled/insertRequire": ["./bootstrap"]
+                }
             }
         },
         copy: {
@@ -148,7 +157,7 @@ module.exports = function (grunt) {
             files: [
               'source/{,*/}*.html',
               '.tmp/styles/{,*/}*.css',
-              '{.tmp, source/js/{,*/}*.js',
+              'source/js/**/*.js',
               'source/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
             ]
           }
@@ -164,8 +173,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('build-js', ['coffee:compile', 'requirejs', 'uglify']);
-    grunt.registerTask('live', ['compass', 'copy:livereload', 'coffee:compile']);
+    grunt.registerTask('build-js', ['coffee:compile', 'requirejs:compile', 'uglify']);
+    grunt.registerTask('live', ['compass', 'coffee:compile', 'copy:livereload']);
     grunt.registerTask('build-css', ['compass']);
     grunt.registerTask('build', ['build-js', 'build-css', 'copy:dist']);
     grunt.registerTask('server', 

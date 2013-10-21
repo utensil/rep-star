@@ -1,6 +1,6 @@
 # Rep Star
 
-A nearly backendless HTML5 app to manage stared repositories of Github and more.
+A nearly backendless HTML5 app to manage starred repositories of Github and more.
 
 ## Development Status
 
