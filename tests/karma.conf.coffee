@@ -51,7 +51,7 @@ module.exports = (config) ->
     # optionally, configure the reporter
     coverageReporter: 
       type: 'lcov',
-      dir: 'coverage/'
+      dir: 'coverage'
 
     # web server port
     port: 9876
