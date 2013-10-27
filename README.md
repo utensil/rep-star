@@ -1,8 +1,14 @@
-# Rep Star
+Rep Star
+====================
 
 A nearly backendless HTML5 app to manage starred repositories of Github and more.
 
-## Development Status
+Development Status
+----------------------
+
+[![Build Status](https://travis-ci.org/utensil/rep-star.png?branch=master)](https://travis-ci.org/utensil/rep-star)
+[![Coverage Status](https://coveralls.io/repos/utensil/rep-star/badge.png)](https://coveralls.io/r/utensil/rep-star)
+
 
 Early stage. Basically nothing is completed yet.
 
@@ -12,7 +18,8 @@ License
 MIT Licence, see LICENSE.
 Copyright (c) 2013 Utensil Song (https://github.com/utensil)
 
-## Installation
+Installation
+----------------
 
 ```
   # get npm dependencies
@@ -33,7 +40,8 @@ Copyright (c) 2013 Utensil Song (https://github.com/utensil)
   bundle install
 ```
 
-## Usage
+Usage
+-----------
 
 There are several grunt tasks available:
 
@@ -42,11 +50,13 @@ There are several grunt tasks available:
 * `grunt compass` compiles compass project
 * `grunt`, `grunt build` will build project into `build` directory. It compiles project into single file, minifies it and compiles styles.
 
-## Libs update
+Libs update
+-------------
 
 To update all the dependencies to latest compatible versions run `bower install`.
 
-## Tests
+Tests
+--------
 
 Tests use Jasmin and Chai (optional, can be enabled per spec) for assertions.
 
