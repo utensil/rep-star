@@ -100,7 +100,7 @@ module.exports = (grunt) ->
       #  configFile: "tests/karma-compiled.conf.js"
       unit: # start testing server that listens for code updates
         configFile: "tests/karma.conf.coffee"
-        singleRun: false
+        singleRun: true
         browsers: ["PhantomJS"]
 
     connect:

@@ -7,3 +7,6 @@ node_modules
 source/js/cf
 source/js/libs
 .tmp
+/coverage
+
+/tests/bak

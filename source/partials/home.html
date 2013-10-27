@@ -12,11 +12,15 @@ It's as easy as 2 * 2 = {{blah}}
   <li>Github API</li>
 </ul>
 
-<p><a data-ng-click="authGithub()">Github</a></p>
+<p><a ng-click="authGithub()">Github</a></p>
 
-<div data-ng-repeat="rep in reps">
-  <h3>{{rep.full_name}}</h3>
-  <pre>
-    {{rep|json}}
-  </pre>
+<div ng-repeat="rep in reps">
+  <a ng-href=""><img ng-src="{{rep.owner.avatar_url}}"></a>
+  <span>
+    <h3>{{rep.full_name}}</h3>
+    <p>{{rep.description}}</p>
+    <pre>
+      {{rep|json}}
+    </pre>
+  </span>
 </div>

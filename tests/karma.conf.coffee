@@ -13,7 +13,11 @@ module.exports = (config) ->
     ]
     preprocessors:
       "tests/**/*.coffee": "coffee"
-
+      ".tmp/js/*.js": "coverage"
+      ".tmp/js/controllers/*.js": "coverage"
+      ".tmp/js/directives/*.js": "coverage"
+      ".tmp/js/filters/*.js": "coverage"
+      ".tmp/js/services/*.js": "coverage"
 
     # list of files / patterns to load in the browser
     files: [
@@ -39,7 +43,12 @@ module.exports = (config) ->
 
     # test results reporter to use
     # possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ["progress"]
+    reporters: ['progress', 'coverage']
+
+    # optionally, configure the reporter
+    coverageReporter: 
+      type: 'html',
+      dir: 'coverage/'
 
     # web server port
     port: 9876
@@ -69,4 +78,4 @@ module.exports = (config) ->
 
     # Continuous Integration mode
     # if true, it capture browsers, run tests and exit
-    singleRun: false
+    singleRun: true
