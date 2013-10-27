@@ -2,51 +2,51 @@ module.exports = (grunt) ->
 
   # Project configuration.
   grunt.initConfig
-    pkg: grunt.file.readJSON("package.json")
+    pkg: grunt.file.readJSON('package.json')
     requirejs:
       compile:
         options:
-          mainConfigFile: ".tmp/js/main.js"
+          mainConfigFile: '.tmp/js/main.js'
           wrap: true
-          name: "main"
-          optimize: "none"
-          baseUrl: ".tmp/js"
-          out: "build/js/main-src.js"
-          "disabled/exclude": ["main.js"]
-          "disabled/insertRequire": ["./bootstrap"]
+          name: 'main'
+          optimize: 'none'
+          baseUrl: '.tmp/js'
+          out: 'build/js/main-src.js'
+          'disabled/exclude': ['main.js']
+          'disabled/insertRequire': ['./bootstrap']
 
     copy:
       dist:
         files: [
           {
             expand: true
-            cwd: "source/partials/"
-            src: ["**/*"]
-            dest: "build/partials"
+            cwd: 'source/partials/'
+            src: ['**/*']
+            dest: 'build/partials'
           }
           {
             expand: true
-            cwd: "source/"
-            src: ["index.html"]
-            dest: "build/"
+            cwd: 'source/'
+            src: ['index.html']
+            dest: 'build/'
           }
           {
             expand: true
-            cwd: "source/js/libs"
-            src: ["**/*"]
-            dest: "build/js/libs" # so resources of libs are preserved
+            cwd: 'source/js/libs'
+            src: ['**/*']
+            dest: 'build/js/libs' # so resources of libs are preserved
           }
           {
             expand: true
-            cwd: "source/js/"
-            src: ["**/*.js"]
-            dest: ".tmp/js/" # so can be processed by requirejs
+            cwd: 'source/js/'
+            src: ['**/*.js']
+            dest: '.tmp/js/' # so can be processed by requirejs
           }
           {
             expand: true
-            cwd: "assets/"
-            src: ["**/*"]
-            dest: "build/assets/"
+            cwd: 'assets/'
+            src: ['**/*']
+            dest: 'build/assets/'
           }
         ]
 
@@ -54,88 +54,92 @@ module.exports = (grunt) ->
         files: [
           {
             expand: true
-            cwd: "source/js/"
-            src: ["**/*"]
-            dest: ".tmp/js/"
+            cwd: 'source/js/'
+            src: ['**/*']
+            dest: '.tmp/js/'
           }
           {
             expand: true
-            cwd: "assets/"
-            src: ["**/*"]
-            dest: ".tmp/assets/"
+            cwd: 'assets/'
+            src: ['**/*']
+            dest: '.tmp/assets/'
           }
         ]
 
     uglify:
       main:
         options:
-          sourceMappingURL: "./source-map.js"
-          sourceMap: "build/js/source-map.js"
+          sourceMappingURL: './source-map.js'
+          sourceMap: 'build/js/source-map.js'
           mangle: false
 
         files:
-          "build/js/main.js": ["build/js/main-src.js"]
+          'build/js/main.js': ['build/js/main-src.js']
 
     compass:
       main:
         options:
-          config: "config.rb"
+          config: 'config.rb'
 
     coffee:
       options:
         sourceMap: false
-        sourceRoot: ""
+        sourceRoot: ''
 
       compile:
         files: [
           expand: true
-          cwd: "source/coffee"
-          src: "**/*.coffee"
-          dest: ".tmp/js/" # so can be processed by requirejs
-          ext: ".js"
+          cwd: 'source/coffee'
+          src: '**/*.coffee'
+          dest: '.tmp/js/' # so can be processed by requirejs
+          ext: '.js'
         ]
 
     karma:
       #ci: # runs tests one time in PhantomJS, good for continuous integration
-      #  configFile: "tests/karma-compiled.conf.js"
+      #  configFile: 'tests/karma-compiled.conf.js'
       unit: # start testing server that listens for code updates
-        configFile: "tests/karma.conf.coffee"
+        configFile: 'tests/karma.conf.coffee'
         singleRun: true
-        browsers: ["PhantomJS"]
+        browsers: ['PhantomJS']
+
+    coveralls:
+      options:
+        coverage_dir: 'coverage/'
 
     connect:
       options:
         port: 9000
 
         # Change this to '0.0.0.0' to access the server from outside.
-        hostname: "localhost"
+        hostname: 'localhost'
         livereload: 35729
 
       livereload:
         options:
           open: true
           base: [
-            ".tmp"
-            "source"
+            '.tmp'
+            'source'
           ]
 
       test:
         options:
           port: 9001
           base: [
-            ".tmp"
-            "tests"
-            "source"
+            '.tmp'
+            'tests'
+            'source'
           ]
 
       dist:
         options:
-          base: "build"
+          base: 'build'
 
     watch:
       coffee:
-        files: ["source/coffee/**/*.coffee"]
-        tasks: ["coffee:compile"]
+        files: ['source/coffee/**/*.coffee']
+        tasks: ['coffee:compile']
 
 
       # coffeeTest: {
@@ -143,60 +147,54 @@ module.exports = (grunt) ->
       #   tasks: ['coffee:test']
       # },
       compass:
-        files: ["source/scss/**/*.{scss,sass}"]
+        files: ['source/scss/**/*.{scss,sass}']
         tasks: [
-          "compass:main"
-          "copy:livereload"
+          'compass:main'
+          'copy:livereload'
         ]
 
       livereload:
         options:
-          livereload: "<%= connect.options.livereload %>"
+          livereload: '<%= connect.options.livereload %>'
 
         files: [
-          "source/**/*.html"
-          "source/js/**/*.js"
-          "source/images/**/*.{png,jpg,jpeg,gif,webp,svg}"
+          'source/**/*.html'
+          'source/js/**/*.js'
+          'source/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
         ]
 
-  grunt.loadNpmTasks "grunt-contrib-requirejs"
-  grunt.loadNpmTasks "grunt-contrib-copy"
-  grunt.loadNpmTasks "grunt-contrib-uglify"
-  grunt.loadNpmTasks "grunt-contrib-compass"
-  grunt.loadNpmTasks "grunt-contrib-watch"
-  grunt.loadNpmTasks "grunt-contrib-connect"
-  grunt.loadNpmTasks "grunt-contrib-coffee"
-  grunt.loadNpmTasks "grunt-karma"
 
-  grunt.task.registerTask 'coverall', 'Report to https://coveralls.io', ->
-    grunt.util.spawn
-      cmd: 'cat coverage/*/lcov.info|node ./node_modules/coveralls/bin/coveralls.js'
-      args: []
-    , (error, result, code)->
-      grunt.log.writeln("#{error}, #{result}, #{code}")
+  grunt.loadNpmTasks 'grunt-contrib-requirejs'
+  grunt.loadNpmTasks 'grunt-contrib-copy'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
+  grunt.loadNpmTasks 'grunt-contrib-compass'
+  grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-contrib-connect'
+  grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-karma'
+  grunt.loadNpmTasks 'grunt-karma-coveralls'
 
-
-  grunt.registerTask "live", [
-    "compass"
-    "coffee:compile"
-    "copy:livereload"
+  grunt.registerTask 'live', [
+    'compass'
+    'coffee:compile'
+    'copy:livereload'
   ]
-  grunt.registerTask "build", [
-    "compass"
-    "coffee:compile"
-    "copy:dist"
-    "requirejs:compile"
-    "uglify"
+  grunt.registerTask 'build', [
+    'compass'
+    'coffee:compile'
+    'copy:dist'
+    'requirejs:compile'
+    'uglify'
   ]
-  grunt.registerTask "server", [
-    "live"
-    "connect:livereload"
-    "watch"
+  grunt.registerTask 'server', [
+    'live'
+    'connect:livereload'
+    'watch'
   ]
-  grunt.registerTask "test", [
-    "live"
-    "karma:unit"
-    "coverall"
+  grunt.registerTask 'test', [
+    'live'
+    'karma:unit'
+    'coveralls'
   ]
 
-  grunt.registerTask "default", ["build"]
+  grunt.registerTask 'default', ['build']
