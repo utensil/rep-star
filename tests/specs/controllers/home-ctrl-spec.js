@@ -1,4 +1,4 @@
-define(['chai', 'angular-mocks', 'Source/controllers/home-ctrl'], function (chai) {
+define(['chai', 'angular-mocks', 'controllers/home-ctrl'], function (chai) {
 describe('home', function () {
 
     // wanna use chai assertions? enable it.

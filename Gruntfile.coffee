@@ -96,11 +96,10 @@ module.exports = (grunt) ->
         ]
 
     karma:
-      ci: # runs tests one time in PhantomJS, good for continuous integration
-        configFile: "tests/karma-compiled.conf.js"
-
+      #ci: # runs tests one time in PhantomJS, good for continuous integration
+      #  configFile: "tests/karma-compiled.conf.js"
       unit: # start testing server that listens for code updates
-        configFile: "tests/karma.conf.js"
+        configFile: "tests/karma.conf.coffee"
         singleRun: false
         browsers: ["PhantomJS"]
 
@@ -185,4 +184,9 @@ module.exports = (grunt) ->
     "connect:livereload"
     "watch"
   ]
+  grunt.registerTask "test", [
+    "live"
+    "karma:unit"
+  ]
+
   grunt.registerTask "default", ["build"]
