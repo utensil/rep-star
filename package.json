@@ -1,7 +1,12 @@
 {
   "name": "rep-star",
   "version": "0.2.1",
+  "scripts": {
+    "test": "grunt test"
+  },
   "devDependencies": {
+    "bower": "~1.2.7",
+    "coffee-script": "~1.6.3",
     "grunt": "~0.4.1",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-requirejs": "~0.4.1",
