@@ -167,6 +167,15 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-connect"
   grunt.loadNpmTasks "grunt-contrib-coffee"
   grunt.loadNpmTasks "grunt-karma"
+
+  grunt.task.registerTask 'coverall', 'Report to https://coveralls.io', ->
+    grunt.util.spawn
+      cmd: 'cat coverage/*/lcov.info|node ./node_modules/coveralls/bin/coveralls.js'
+      args: []
+    , (error, result, code)->
+      grunt.log.writeln("#{error}, #{result}, #{code}")
+
+
   grunt.registerTask "live", [
     "compass"
     "coffee:compile"
@@ -187,6 +196,7 @@ module.exports = (grunt) ->
   grunt.registerTask "test", [
     "live"
     "karma:unit"
+    "coverall"
   ]
 
   grunt.registerTask "default", ["build"]

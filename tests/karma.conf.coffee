@@ -43,11 +43,14 @@ module.exports = (config) ->
 
     # test results reporter to use
     # possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress', 'coverage']
+    reporters: [
+      'progress'
+      'coverage'
+    ]
 
     # optionally, configure the reporter
     coverageReporter: 
-      type: 'html',
+      type: 'lcov',
       dir: 'coverage/'
 
     # web server port
