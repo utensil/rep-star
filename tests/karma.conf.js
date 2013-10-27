@@ -20,13 +20,13 @@ module.exports = function (config) {
 // list of files / patterns to load in the browser
         files: [
             'tests/main.js',
-            { pattern: 'source/js/**/*.js', included: false },
+            { pattern: '.tmp/js/**/*.js', included: false },
             { pattern: 'tests/specs/**/*.js', included: false }
         ],
 
 // list of files to exclude
         exclude: [
-            'source/js/main.js'
+            '.tmp/js/main.js'
         ],
 
 
@@ -64,7 +64,7 @@ module.exports = function (config) {
 // - Safari (only Mac)
 // - PhantomJS
 // - IE (only Windows)
-        browsers: ['ChromeCanary'],
+        browsers: ['PhantomJS'],
 
 
 // If browser does not capture in given timeout [ms], kill it

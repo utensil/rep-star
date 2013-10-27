@@ -1,1 +1,22 @@
-It's as easy as 2 * 2 = {{2 * 2}}
+It's as easy as 2 * 2 = {{blah}}
+
+<ul>
+  <li>bower</li>
+  <li>requirejs</li>
+  <li>angularjs</li>
+  <li>coffeescript</li>
+  <li>sass</li>
+  <li>gruntjs</li>
+  <li>livereload</li>
+  <li>oauth.io</li>
+  <li>Github API</li>
+</ul>
+
+<p><a data-ng-click="authGithub()">Github</a></p>
+
+<div data-ng-repeat="rep in reps">
+  <h3>{{rep.full_name}}</h3>
+  <pre>
+    {{rep|json}}
+  </pre>
+</div>
