@@ -2,8 +2,12 @@
 # https://github.com/angular/angular.js/commit/603fe0d19608ffe1915d8bc23bf412912e7ee1ac
 (window or {}).name = 'NG_DEFER_BOOTSTRAP!'
 
-
-REQUIREJS_CONFIG = 
+###
+configure RequireJS
+prefer named modules to long paths, especially for version mgt
+or 3rd party libraries
+###
+require.config
   paths:
     'jquery'          : './libs/jquery/jquery'
     'async'           : './libs/requirejs-plugins/src/async'
@@ -34,12 +38,6 @@ REQUIREJS_CONFIG =
 
     'angular-resource':
       deps: ['angular']
-###
-configure RequireJS
-prefer named modules to long paths, especially for version mgt
-or 3rd party libraries
-###
-require.config REQUIREJS_CONFIG
 
 require ['./bootstrap'], ->
   #nothing to do here...see bootstrap.js

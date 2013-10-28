@@ -5,7 +5,7 @@
   "author": "utensil <utensilcandel@gmail.com>",
   "repository": "git://github.com/utensil/rep-star",
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt ci"
   },
   "devDependencies": {
     "bower": "~1.2.7",

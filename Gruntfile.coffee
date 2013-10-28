@@ -83,6 +83,7 @@ module.exports = (grunt) ->
 
     coffee:
       options:
+        bare: true
         sourceMap: false
         sourceRoot: ''
 
@@ -194,6 +195,11 @@ module.exports = (grunt) ->
   grunt.registerTask 'test', [
     'live'
     'karma:unit'
+  ]
+  
+  grunt.registerTask 'ci', [
+    'build'
+    'test'
     'coveralls'
   ]
 
