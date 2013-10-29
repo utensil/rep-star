@@ -76,11 +76,6 @@ module.exports = (grunt) ->
         files:
           'build/js/main.js': ['build/js/main-src.js']
 
-    compass:
-      main:
-        options:
-          config: 'config.rb'
-
     coffee:
       options:
         bare: true
@@ -94,6 +89,20 @@ module.exports = (grunt) ->
           src: '**/*.coffee'
           dest: '.tmp/js/' # so can be processed by requirejs
           ext: '.js'
+        ]
+
+    less:
+      compile:
+        options:
+          paths: ["source/less"]
+        files: [
+          {
+            expand: true
+            cwd: 'source/less/'
+            src: ['**/*.less']
+            dest: 'assets/css/'
+            ext: '.css'
+          }
         ]
 
     karma:
@@ -139,18 +148,17 @@ module.exports = (grunt) ->
 
     watch:
       coffee:
+        options:
+          livereload: '<%= connect.options.livereload %>'
         files: ['source/coffee/**/*.coffee']
         tasks: ['coffee:compile']
 
-
-      # coffeeTest: {
-      #   files: ['test/spec/{,*/}*.coffee'],
-      #   tasks: ['coffee:test']
-      # },
-      compass:
-        files: ['source/scss/**/*.{scss,sass}']
+      less:
+        options:
+          livereload: '<%= connect.options.livereload %>'
+        files: ['source/less/**/*.less']
         tasks: [
-          'compass:main'
+          'less:compile'
           'copy:livereload'
         ]
 
@@ -168,20 +176,21 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-requirejs'
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
-  grunt.loadNpmTasks 'grunt-contrib-compass'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-connect'
+  grunt.loadNpmTasks 'grunt-contrib-less'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-karma'
   grunt.loadNpmTasks 'grunt-karma-coveralls'
 
+
   grunt.registerTask 'live', [
-    'compass'
+    'less:compile'
     'coffee:compile'
     'copy:livereload'
   ]
   grunt.registerTask 'build', [
-    'compass'
+    'less:compile'
     'coffee:compile'
     'copy:dist'
     'requirejs:compile'
