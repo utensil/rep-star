@@ -8,5 +8,4 @@ before_install:
   - npm -g install coffee-script
   - bower install
   - phantomjs -v
-  - ruby -v
-  - bundle install
+
