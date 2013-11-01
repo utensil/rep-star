@@ -85,7 +85,7 @@ module.exports = (grunt) ->
       compile:
         files: [
           expand: true
-          cwd: 'source/coffee'
+          cwd: 'source/js'
           src: '**/*.coffee'
           dest: '.tmp/js/' # so can be processed by requirejs
           ext: '.js'
@@ -94,11 +94,11 @@ module.exports = (grunt) ->
     less:
       compile:
         options:
-          paths: ["source/less"]
+          paths: ["source/css"]
         files: [
           {
             expand: true
-            cwd: 'source/less/'
+            cwd: 'source/css/'
             src: ['**/*.less']
             dest: 'assets/css/'
             ext: '.css'
@@ -150,13 +150,13 @@ module.exports = (grunt) ->
       coffee:
         options:
           livereload: '<%= connect.options.livereload %>'
-        files: ['source/coffee/**/*.coffee']
+        files: ['source/js/**/*.coffee']
         tasks: ['coffee:compile']
 
       less:
         options:
           livereload: '<%= connect.options.livereload %>'
-        files: ['source/less/**/*.less']
+        files: ['source/css/**/*.less']
         tasks: [
           'less:compile'
           'copy:livereload'
