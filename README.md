@@ -87,10 +87,11 @@ Usage
 
 There are several grunt tasks available:
 
-* `grunt server` starts livereload server for development
-* `grunt test` starts karma test runner with `singleRun: true` enabled, good to use in CI scenarios
-* `grunt compass` compiles compass project
 * `grunt`, `grunt build` will build project into `build` directory. It compiles project into single file, minifies it and compiles styles.
+* `grunt preview` runs `grunt build` and preview the build result by starting a static http server
+* `grunt dev` starts livereload server for development
+* `grunt test` starts karma test runner with `singleRun: true` enabled
+* `grunt ci` is used in Travis CI, and it report test coverage information to coveralls.io
 
 Libs update
 -------------

@@ -55,7 +55,7 @@ module.exports = (grunt) ->
           {
             expand: true
             cwd: 'source/js/'
-            src: ['**/*']
+            src: ['**/*.js']
             dest: '.tmp/js/'
           }
           {
@@ -120,42 +120,34 @@ module.exports = (grunt) ->
     connect:
       options:
         port: 9000
-
         # Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost'
-        livereload: 35729
+        hostname: 'localhost'        
 
       livereload:
         options:
+          livereload: 35729
           open: true
           base: [
             '.tmp'
             'source'
           ]
 
-      test:
-        options:
-          port: 9001
-          base: [
-            '.tmp'
-            'tests'
-            'source'
-          ]
-
       dist:
         options:
+          open: true
           base: 'build'
+          keepalive: true
 
     watch:
       coffee:
         options:
-          livereload: '<%= connect.options.livereload %>'
+          livereload: '<%= connect.livereload.options.livereload %>'
         files: ['source/js/**/*.coffee']
         tasks: ['coffee:compile']
 
       less:
         options:
-          livereload: '<%= connect.options.livereload %>'
+          livereload: '<%= connect.livereload.options.livereload %>'
         files: ['source/css/**/*.less']
         tasks: [
           'less:compile'
@@ -183,7 +175,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-karma'
   grunt.loadNpmTasks 'grunt-karma-coveralls'
 
-
   grunt.registerTask 'live', [
     'less:compile'
     'coffee:compile'
@@ -196,11 +187,16 @@ module.exports = (grunt) ->
     'requirejs:compile'
     'uglify'
   ]
-  grunt.registerTask 'server', [
+  grunt.registerTask 'dev', [
     'live'
     'connect:livereload'
     'watch'
   ]
+  grunt.registerTask 'preview', [
+    'build'
+    'connect:dist'
+  ]
+
   grunt.registerTask 'test', [
     'live'
     'karma:unit'

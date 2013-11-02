@@ -5,7 +5,6 @@ but implementations' `define`s placed elsewhere void the warranty
 ###
 define [
   "controllers/home-ctrl"
-  "testcf"
   "lodash"
   "oauth"
   "oboe"
