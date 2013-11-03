@@ -1,26 +1,131 @@
-It's as easy as 2 * 2 = {{blah}}
+<div class="container">
+  <div class="jumbotron">    
+    <h1>
+      <div class="row">
+        <div class="col-md-9">
+          <p class="rep-star">
+            <span class="intro-1">Organize Repositories</span> <br />
+            <span class="intro-2">
+            You 
+            <span class="btn btn-lg btn-default">
+              <span class="glyphicon glyphicon-star"></span>
+              Star
+            </span> 
+            <span class="intro-2"> 
+          </p>
+          <p class="hide">
+            <small>
+              And sync your efforts
+            </small>
+            <small>
+              to your gist...
+            </small>
+          </p>
+        </div>
+        <div class="col-md-3">
+          <img src="/assets/images/rep-star.png" class="img-rounded img-responsive rep-star-logo"> 
+        </div>
+      </div>      
+    </h1>
+    <p class="main-actions"> 
+      <a class="btn btn-success btn-lg" ng-click="authGithub()">
+        <span class="glyphicon glyphicon-user"></span>
+        Login with GitHub
+      </a>
+      <a class="btn btn-link btn-lg" href="https://github.com/utensil/rep-star">
+        Learn more
+      </a>
+    </p>
+  </div>
 
-<ul>
-  <li>bower</li>
-  <li>requirejs</li>
-  <li>angularjs</li>
-  <li>coffeescript</li>
-  <li>sass</li>
-  <li>gruntjs</li>
-  <li>livereload</li>
-  <li>oauth.io</li>
-  <li>Github API</li>
-</ul>
+  <div class="hide">
+    Sort by:
+    <div class="btn-group">
+      <button type="button" class="btn btn-default">Recently starred</button>
+      <button type="button" class="btn btn-default">Most stars</button>
+    </div>
+  </div>
 
-<p><a ng-click="authGithub()">Github</a></p>
+  <pre class="hide">
+    * full_name
+    * description
+    * fork
+    * created_at
+    * updated_at
+    * watchers_count
+    * language
+    * forks_count
+    * mirror_url
 
-<div ng-repeat="rep in reps">
-  <a ng-href=""><img ng-src="{{rep.owner.avatar_url}}"></a>
-  <span>
-    <h3>{{rep.full_name}}</h3>
-    <p>{{rep.description}}</p>
-    <pre>
-      {{rep|json}}
-    </pre>
-  </span>
+    * owner.avatar_url
+    * owner.html_url
+
+    GET /repos/:owner/:repo/languages
+  </pre>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>
+            Catagory
+            <button type="button" class="btn btn-default btn-sm pull-right">
+              <span class="glyphicon glyphicon-wrench"></span>
+            </button>
+          </h4>          
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+      </div>
+      <div class="panel panel-default hidden-xs">
+        <div class="panel-heading">
+          <h4>
+            Label
+            <button type="button" class="btn btn-default btn-sm pull-right">
+              <span class="glyphicon glyphicon-wrench"></span>
+            </button>
+          </h4>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div ng-repeat="rep in reps">
+        <div class="row panel panel-default rep">
+          <div class="col-md-2 ">
+            <a ng-href="{{rep.owner.html_url}}">
+              <img class="owner-avatar img-thumbnail" ng-src="{{rep.owner.avatar_url}}">
+            </a>
+          </div>
+          <div class="col-md-10">
+            <h3>
+              <a ng-href="{{rep.html_url}}" class="fullname">{{rep.full_name}}</a>
+              <span class="badge">
+                <span class="glyphicon glyphicon-star"></span> 
+                {{rep.watchers_count}}
+              </span>
+            </h3>
+            <p>{{rep.description}}</p>
+            <p>
+              <span class="glyphicon glyphicon-tags"></span>
+              <span class="badge" ng-show="rep.language">            
+                {{rep.language}}
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
