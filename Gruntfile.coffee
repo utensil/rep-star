@@ -38,6 +38,12 @@ module.exports = (grunt) ->
           }
           {
             expand: true
+            cwd: 'source/js/vendor'
+            src: ['**/*']
+            dest: 'build/js/vendor' # so resources of vendor are preserved
+          }
+          {
+            expand: true
             cwd: 'source/js/'
             src: ['**/*.js']
             dest: '.tmp/js/' # so can be processed by requirejs
@@ -54,9 +60,15 @@ module.exports = (grunt) ->
         files: [
           {
             expand: true
-            cwd: 'source/js/'
+            cwd: 'source/js/libs/'
             src: ['**/*.js']
-            dest: '.tmp/js/'
+            dest: '.tmp/js/libs/'
+          }
+          {
+            expand: true
+            cwd: 'source/css/libs/'
+            src: ['**/*']
+            dest: '.tmp/assets/css/libs/'
           }
           {
             expand: true
@@ -86,7 +98,7 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: 'source/js'
-          src: '**/*.coffee'
+          src: ['**/*.coffee', '!libs/**/*.coffee']
           dest: '.tmp/js/' # so can be processed by requirejs
           ext: '.js'
         ]
@@ -99,7 +111,7 @@ module.exports = (grunt) ->
           {
             expand: true
             cwd: 'source/css/'
-            src: ['**/*.less']
+            src: ['**/*.less', '!libs/**/*.less']
             dest: 'assets/css/'
             ext: '.css'
           }
@@ -154,14 +166,21 @@ module.exports = (grunt) ->
           'copy:livereload'
         ]
 
+      assets:
+        options:
+          livereload: '<%= connect.livereload.options.livereload %>'
+        files: ['assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}']
+        tasks: [
+          'copy:livereload'
+        ]
+
       livereload:
         options:
-          livereload: '<%= connect.options.livereload %>'
+          livereload: '<%= connect.livereload.options.livereload %>'
 
         files: [
           'source/**/*.html'
-          'source/js/**/*.js'
-          'source/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
+          'source/js/**/*.js'          
         ]
 
 
