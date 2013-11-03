@@ -169,7 +169,11 @@ module.exports = (grunt) ->
       assets:
         options:
           livereload: '<%= connect.livereload.options.livereload %>'
-        files: ['assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}']
+        files: [
+          'source/js/libs/**/*'
+          'source/css/libs/**/*'
+          'assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
+        ]
         tasks: [
           'copy:livereload'
         ]
