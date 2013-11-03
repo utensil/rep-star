@@ -22,6 +22,8 @@
     "requirejs-plugins": "~1.0.2",
     "chai": "~1.7.0",
     "lodash": "~2.2.1",
-    "oboe": "~1.7.0"
+    "oboe": "~1.7.0",
+    "perfect-scrollbar": "~0.4.5",
+    "bpopup": "~0.9.4"
   }
 }

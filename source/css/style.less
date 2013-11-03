@@ -39,6 +39,13 @@
   }
 }
 
+#reps {
+  position: 'relative';
+  overflow: hidden;
+  width: 90%;
+  .center-block();
+}
+
 .rep {
   .fullname {
     word-wrap: break-word;
@@ -57,6 +64,37 @@
 
   .rep-actions {
     margin-bottom: 0.5em;
+  }
+}
+
+#rep-info {
+  background-color: white;
+  .box-shadow(@fancy-shadow);
+
+  .rep {
+    margin-left: 1em;
+    margin-right: 2em;
+  }
+
+  .close-handle {
+    position: absolute;
+    cursor: pointer;
+    color: @brand-primary;
+    font-size: 1.5em;  
+    right: 5px;
+    top: 5px;
+
+    &:hover {
+      text-shadow: 3px 3px 30px @brand-info;
+    }
+  }
+
+  .rep-readme {
+    position: 'relative';
+    overflow: hidden;
+    .center-block();
+    margin-left: 1em;
+    margin-right: 2em;
   }
 }
 

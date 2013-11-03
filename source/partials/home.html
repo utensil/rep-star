@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="jumbotron">    
+  <div class="jumbotron hide">    
     <h1>
       <div class="row">
         <div class="col-md-9">
@@ -101,29 +101,69 @@
       </div>
     </div>
     <div class="col-sm-9">
-      <div ng-repeat="rep in reps">
-        <div class="row panel panel-default rep">
+      <div id="reps">
+        <div ng-repeat="rep in reps" ng-click="popup(rep)">
+          <div class="row panel panel-default rep">
+            <div class="col-md-2 ">
+              <a ng-href="{{rep.owner.html_url}}">
+                <img class="owner-avatar img-thumbnail" ng-src="{{rep.owner.avatar_url}}">
+              </a>
+            </div>
+            <div class="col-md-10">
+              <h3>
+                <a ng-href="{{rep.html_url}}" class="fullname">{{rep.full_name}}</a>
+                <span class="badge">
+                  <span class="glyphicon glyphicon-star"></span> 
+                  {{rep.watchers_count}}
+                </span>
+              </h3>
+              <p>{{rep.description}}</p>
+              <p>
+                <span class="glyphicon glyphicon-tags"></span>
+                &nbsp;
+                <span class="badge" ng-show="rep.language">            
+                  {{rep.language}}
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popups">
+  <div id="rep-info" class="hide">
+    <span class="close-handle">
+      <span class="glyphicon glyphicon-remove-circle"></span>
+    </span>
+    <div ng-show="current_rep">
+      <div class="panel panel-default">
+        <div class="row rep">
           <div class="col-md-2 ">
-            <a ng-href="{{rep.owner.html_url}}">
-              <img class="owner-avatar img-thumbnail" ng-src="{{rep.owner.avatar_url}}">
+            <a ng-href="{{current_rep.owner.html_url}}">
+              <img class="owner-avatar img-thumbnail" ng-src="{{current_rep.owner.avatar_url}}">
             </a>
           </div>
           <div class="col-md-10">
             <h3>
-              <a ng-href="{{rep.html_url}}" class="fullname">{{rep.full_name}}</a>
+              <a ng-href="{{current_rep.html_url}}" class="fullname">{{current_rep.full_name}}</a>
               <span class="badge">
                 <span class="glyphicon glyphicon-star"></span> 
-                {{rep.watchers_count}}
+                {{current_rep.watchers_count}}
               </span>
             </h3>
-            <p>{{rep.description}}</p>
+            <p>{{current_rep.description}}</p>
             <p>
               <span class="glyphicon glyphicon-tags"></span>
-              <span class="badge" ng-show="rep.language">            
-                {{rep.language}}
+              &nbsp;
+              <span class="badge" ng-show="current_rep.language">            
+                {{current_rep.language}}
               </span>
             </p>
           </div>
+        </div>
+        <div class="rep-readme">
         </div>
       </div>
     </div>
