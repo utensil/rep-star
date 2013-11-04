@@ -27,14 +27,17 @@ https://github.com/karma-runner/karma-requirejs/issues/6#issuecomment-23037725
 
 REQUIREJS_CONFIG = 
   paths:
-    'jquery'          : './libs/jquery/jquery'
-    'async'           : './libs/requirejs-plugins/src/async'
-    'domReady'        : './libs/requirejs-domready/domReady'
-    'angular'         : './libs/angular/angular'
-    'angular-resource': './libs/angular-resource/angular-resource'    
-    'lodash'          : './libs/lodash/dist/lodash'
-    'oauth'           : './vendor/oauthio/oauth'
-    'oboe'            : './libs/oboe/dist/oboe-browser'
+    'jquery'            : './libs/jquery/jquery'
+    'async'             : './libs/requirejs-plugins/src/async'
+    'domReady'          : './libs/requirejs-domready/domReady'
+    'angular'           : './libs/angular/angular'
+    'angular-resource'  : './libs/angular-resource/angular-resource'    
+    'lodash'            : './libs/lodash/dist/lodash'
+    'oauth'             : './vendor/oauthio/oauth'
+    'oboe'              : './libs/oboe/dist/oboe-browser'
+    'jquery.mousewheel' : './libs/perfect-scrollbar/src/jquery.mousewheel'
+    'perfect-scrollbar' : './libs/perfect-scrollbar/src/perfect-scrollbar'
+    'jquery.bpopup'     : './libs/bpopup/jquery.bpopup'
     # named modules for test dependencies
     'angular-mocks'   : './libs/angular-mocks/angular-mocks'
     'chai'            : './libs/chai/chai'
@@ -47,6 +50,15 @@ REQUIREJS_CONFIG =
 
     'oboe':
       exports: 'oboe'
+
+    'jquery.mousewheel':
+      deps: ['jquery']
+
+    'perfect-scrollbar':
+      deps: ['jquery', 'jquery.mousewheel']
+
+    'jquery.bpopup':
+      deps: ['jquery']
 
     'angular':
       exports: 'angular'
