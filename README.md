@@ -1,6 +1,10 @@
 Rep Star
 ====================
 
+[![Build Status](https://travis-ci.org/utensil/rep-star.png?branch=master)](https://travis-ci.org/utensil/rep-star)
+[![Coverage Status](https://coveralls.io/repos/utensil/rep-star/badge.png)](https://coveralls.io/r/utensil/rep-star)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/utensil/rep-star/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 A nearly backendless HTML5 app to manage starred repositories of Github and more.
 
 Rationale
@@ -17,6 +21,11 @@ So, backendless. To be more precise, no backend other than a Github user already
 But in order to modify a user's gist, some OAuth thing must be done, this is where oauth.io comes in. It provides a nearly backendless solution for OAuth, and the its core is open-sourced and thus can be replaced. oauth.io can become unnecessary one day, when a user create his/her own application and store the secrets on the client side.
 
 That's pretty much it, and it's just waiting to be implemented.
+
+Development Status
+----------------------
+
+Early stage. Basically nothing is completed yet.
 
 Tech Choices
 --------------
@@ -45,15 +54,6 @@ Tech Choices
 * [oboe.js](https://github.com/jimhigson/oboe.js) for JSON Streaming and partially implement Github API
 * more
 
-Development Status
-----------------------
-
-[![Build Status](https://travis-ci.org/utensil/rep-star.png?branch=master)](https://travis-ci.org/utensil/rep-star)
-[![Coverage Status](https://coveralls.io/repos/utensil/rep-star/badge.png)](https://coveralls.io/r/utensil/rep-star)
-
-
-Early stage. Basically nothing is completed yet.
-
 License
 --------
 
@@ -64,22 +64,23 @@ Installation
 ----------------
 
 ```
-  # get npm dependencies
-  npm install
-
   # install global npm dependencies
   npm -g install grunt-cli
   npm -g install bower
   npm -g install karma
   npm -g install coffee-script
-
+  
+  # get bower dependencies
+  bower install
+  
   # also to be able to run tests from cli
   # without browser window popping
   # consider to install PhantomJS
   http://phantomjs.org/download.html
+  phantomjs -v
 
-  # get ruby dependencies
-  bundle install
+  # get npm dependencies
+  npm install
 ```
 
 Usage
@@ -93,14 +94,5 @@ There are several grunt tasks available:
 * `grunt test` starts karma test runner with `singleRun: true` enabled
 * `grunt ci` is used in Travis CI, and it report test coverage information to coveralls.io
 
-Libs update
--------------
 
-To update all the dependencies to latest compatible versions run `bower install`.
 
-Tests
---------
-
-Tests use Jasmin and Chai (optional, can be enabled per spec) for assertions.
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/utensil/rep-star/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
