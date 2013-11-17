@@ -5,6 +5,7 @@ but implementations' `define`s placed elsewhere void the warranty
 ###
 define [
   "controllers/home-ctrl"
+  "controllers/rep-info-ctrl"
 ], () ->
   # nothing
 

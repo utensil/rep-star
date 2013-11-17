@@ -8,7 +8,5 @@ source/js/cf
 source/js/libs
 .tmp
 /coverage
-
 /tests/bak
-
 /assets/images/rep-star.psd

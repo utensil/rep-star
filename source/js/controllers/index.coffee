@@ -7,11 +7,17 @@ which avails each controller of, for example, the `config` constants object.
 ###
 define [
   "angular"
+  'angular-route'
+  'angular-sanitize'
   "../config"
   "../services/index"
+  "ngstorage"
 ], (ng) ->
   "use strict"
   ng.module "app.controllers", [
     "app.constants"
     "app.services"
+    "ngRoute"
+    "ngSanitize"
+    "ngStorage"
   ]

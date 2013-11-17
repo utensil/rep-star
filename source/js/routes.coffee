@@ -12,5 +12,9 @@ define [
       templateUrl: "partials/home.html"
       controller: "homeCtrl"
 
+    $routeProvider.when "/rep-info",
+      templateUrl: "partials/rep-info.html"
+      controller: "repInfoCtrl"
+
     $routeProvider.otherwise redirectTo: "/"
     #$locationProvider.html5Mode(true);

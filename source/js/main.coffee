@@ -13,7 +13,10 @@ require.config
     'async'             : './libs/requirejs-plugins/src/async'
     'domReady'          : './libs/requirejs-domready/domReady'
     'angular'           : './libs/angular/angular'
-    'angular-resource'  : './libs/angular-resource/angular-resource'    
+    'angular-resource'  : './libs/angular-resource/angular-resource'
+    'angular-sanitize'  : './libs/angular-sanitize/angular-sanitize'
+    'angular-route'     : './libs/angular-route/angular-route'
+    'ngstorage'         : './libs/ngstorage/ngstorage' 
     'lodash'            : './libs/lodash/dist/lodash'
     'oauth'             : './vendor/oauthio/oauth'
     'oboe'              : './libs/oboe/dist/oboe-browser'
@@ -50,6 +53,16 @@ require.config
 
     'angular-resource':
       deps: ['angular']
+
+    'ngstorage':
+      deps: ['angular']
+
+    'angular-route':
+      deps: ['angular']
+      
+    'angular-sanitize':
+      deps: ['angular']
+
 
 require ['./bootstrap'], ->
   #nothing to do here...see bootstrap.js

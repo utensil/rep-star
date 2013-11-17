@@ -4,21 +4,22 @@ define [
   'oboe'
   'jquery'
   'perfect-scrollbar'
-  'jquery.bpopup'
-], (controllers, OAuth, oboe, $, ps, bp) ->
+], (controllers, OAuth, oboe, $, ps) ->
   "use strict"
-  controllers.controller "homeCtrl", ($scope, $timeout) ->
+  controllers.controller "homeCtrl", ($scope, $timeout, $location, $localStorage, $sessionStorage) ->
     $scope.blah = "4"
     $scope.reps = []
 
-    store_set = (key, value) ->
-      localStorage.setItem key, JSON.stringify(value)
-
-    store_get = (key) ->
-      return JSON.parse(localStorage.getItem(key))
+    $scope.$storage = $localStorage
 
     logStarredRep = (access_token) ->
       (login) ->
+        #caches results
+        if $sessionStorage.reps
+          $timeout ->
+            $scope.reps = $sessionStorage.reps
+          return
+
         #console.log login
         headers =
           Authorization: "token #{access_token}"
@@ -41,6 +42,7 @@ define [
           "$![*]": (data) ->                       
             $timeout ->
               $scope.reps = data
+              $sessionStorage.reps = data
 
     whenHaveRepReadMe = (access_token, rep_fullname, cb) ->
       headers =
@@ -65,7 +67,7 @@ define [
         unless error
           access_token = result.access_token
           $scope.access_token = access_token
-          store_set 'github_auth_result', result
+          $scope.$storage['github_auth_result'] = result
 
           headers =
             Authorization: "token #{access_token}"
@@ -77,55 +79,13 @@ define [
           ).node
             "$![*]": (data) ->
               login = data['login']
-              store_set 'github_user', data            
+              $scope.$storage['github_user'] = data            
               logStarredRep(access_token)(login)
 
     $scope.popup = (rep) ->
-      $scope.current_rep = rep
-      #.height($(window).height() * 0.8)
+      $sessionStorage.current_rep = rep
 
-      rep_info = $('#rep-info')
-      readme_element = $('.rep-readme', rep_info)
-
-      if($(window).width() <= 480)
-        wdith =  $(window).width() * 0.9        
-        height = $('#reps').height()
-      else
-        wdith = $('#reps').width()          
-        height = Math.min $('#reps').height(), $(window).height()
-
-      rep_info.width(wdith).height(height)
-      readme_element.width(wdith * 0.95).height(height * 0.8)
-
-      rep_info.bPopup(
-        #positionStyle: 'fixed'
-        scrollBar: true
-        position: ['auto', 'auto']
-        follow: [true, false]
-        closeClass: 'close-handle'
-        onOpen: () ->
-          $(this).removeClass('hide')
-          access_token = $scope.access_token          
-          console.log readme_element
-          whenHaveRepReadMe access_token, rep.full_name, (err, data)->
-            readme_element.html(data)
-            readme_element.
-            perfectScrollbar(
-              wheelPropagation: true
-              wheelSpeed: 100
-              minScrollbarLength: 20
-            )
-
-        onClose: () ->          
-          $(this).addClass('hide')
-          $('.rep-readme', this).html('');          
-        #content:'iframe'
-        #loadUrl: "#/rep-info/#{rep.owner.login}/#{rep.name}"
-        #contentContainer: '.rep-readme'
-        #loadData:
-        #content:'image'
-        #loadUrl: '/assets/images/rep-star.png'
-      )
+      $location.path('rep-info')
 
     $('#reps').height($(window).height()).
     perfectScrollbar(
@@ -134,8 +94,8 @@ define [
       minScrollbarLength: 20
     )
 
-    $scope.github_auth_result = store_get 'github_auth_result'
-    $scope.github_user = store_get 'github_user'
+    $scope.github_auth_result = $scope.$storage['github_auth_result']
+    $scope.github_user = $scope.$storage['github_user'] 
 
     if $scope.github_user
       access_token = $scope.github_auth_result.access_token
