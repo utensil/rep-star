@@ -12,6 +12,10 @@ define [
       templateUrl: "partials/home.html"
       controller: "homeCtrl"
 
+    $routeProvider.when "/dashboard",
+      templateUrl: "partials/dashboard.html"
+      controller: "dashboardCtrl"
+
     $routeProvider.when "/rep-info",
       templateUrl: "partials/rep-info.html"
       controller: "repInfoCtrl"
