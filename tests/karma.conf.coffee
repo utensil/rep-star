@@ -39,6 +39,7 @@ module.exports = (config) ->
     # list of files to exclude
     exclude: [
       '.tmp/js/main.js'
+      '.tmp/js/**/spec.js'
     ]
 
     # test results reporter to use

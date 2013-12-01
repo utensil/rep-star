@@ -19,7 +19,6 @@ require.config
     'ngstorage'         : './libs/ngstorage/ngStorage' 
     'lodash'            : './libs/lodash/dist/lodash'
     'oauth'             : './vendor/oauthio/oauth'
-    'oboe'              : './libs/oboe/dist/oboe-browser'
     'jquery.mousewheel' : './libs/perfect-scrollbar/src/jquery.mousewheel'
     'perfect-scrollbar' : './libs/perfect-scrollbar/src/perfect-scrollbar'
     'jquery.bpopup'     : './libs/bpopup/jquery.bpopup'
@@ -32,9 +31,6 @@ require.config
 
     'lodash':
       exports: '_'
-
-    'oboe':
-      exports: 'oboe'
 
     'jquery.mousewheel':
       deps: ['jquery']

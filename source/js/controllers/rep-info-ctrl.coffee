@@ -1,10 +1,9 @@
 define [
   './index'
   'oauth'
-  'oboe'
   'jquery'
   'perfect-scrollbar'
-], (controllers, OAuth, oboe, $, ps) ->
+], (controllers, OAuth, $, ps) ->
   "use strict"
   controllers.controller "repInfoCtrl",
   ($scope, $routeParams, $timeout, $localStorage, $sessionStorage, $window) ->
@@ -16,7 +15,7 @@ define [
       $window.history.back()
 
 
-    whenHaveRepReadMe = (access_token, rep_fullname, cb) ->
+    onRepReadMe = (access_token, rep_fullname, cb) ->
       headers =
         Authorization: "token #{access_token}"
         #Accept: 'application/vnd.github.v3.raw+json'
@@ -39,7 +38,7 @@ define [
     if $scope.github_user
       access_token = $scope.github_auth_result.access_token
       $scope.access_token = access_token
-      whenHaveRepReadMe access_token, $scope.current_rep.full_name, (err, data)->
+      onRepReadMe access_token, $scope.current_rep.full_name, (err, data)->
         #console.log data
         #rep_info = $('#rep-info')
         #readme_element = $('.rep-readme', rep_info)
