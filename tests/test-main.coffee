@@ -34,7 +34,7 @@ REQUIREJS_CONFIG =
     'angular-resource'  : './libs/angular-resource/angular-resource'
     'angular-sanitize'  : './libs/angular-sanitize/angular-sanitize'
     'angular-route'     : './libs/angular-route/angular-route'
-    'ngstorage'         : './libs/ngstorage/ngstorage' 
+    'ngstorage'         : './libs/ngstorage/ngStorage' 
     'lodash'            : './libs/lodash/dist/lodash'
     'oauth'             : './vendor/oauthio/oauth'
     'oboe'              : './libs/oboe/dist/oboe-browser'
