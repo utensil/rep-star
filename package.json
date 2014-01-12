@@ -11,6 +11,8 @@
     "lodash": "latest",
     "jshint": "latest",
     "shelljs": "latest",
-    "gaze": "latest"
+    "gaze": "latest",
+    "less": "latest",
+    "coffee-script": "latest"
   }
 }

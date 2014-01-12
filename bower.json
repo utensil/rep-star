@@ -13,6 +13,7 @@
   "dependencies": {
     "lodash": "~2.2.1",
     "jquery": "~1.10.2",
+    "bootstrap": "latest",
     "riotjs": "latest"
   }
 }

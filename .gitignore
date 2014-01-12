@@ -5,3 +5,5 @@ source/js/libs
 /coverage
 /tests/bak
 /assets/images/rep-star.psd
+
+/dist
