@@ -6,7 +6,7 @@ require "shelljs/make"
 
 gaze = require "gaze"
 less = require "less"
-header = ';((top) -> {'
+header = ';(function (top) {'
 footer = '})(typeof top == "object" ? window : exports);'
 coffee = require "coffee-script"
 _ = require "lodash"
@@ -40,7 +40,7 @@ compile_less = (source, target) ->
 
   parser = new(less.Parser)(
     # Specify search paths for @import directives
-    paths: [dir]
+    paths: ['.', dir, js_libs]
     # Specify a filename, for better error messages
     filename: source
   )
@@ -53,8 +53,6 @@ compile_less = (source, target) ->
 
 # Make a single file out of everything
 concat = ->
-  init()
-
   # riot.js
   js = cat(js_libs + "/riotjs/riot.js")
 
@@ -66,6 +64,10 @@ concat = ->
 
   # dist
   js.to("dist/rep-star.js")
+
+cp_html = ->
+  console.log "cp_html"
+  cp '-rf', ["#{src}/index.html"], 'dist/'
 
 # Test the API on server side (node.js)
 target.test = ->
@@ -92,20 +94,27 @@ target.concat = concat
 
 #  generate application
 target.gen = ->
+  init()
   concat()
+  cp_html()
   compile_less("#{src}/less/style.less", "dist/style.css")
   cp("-f", "#{js_libs}/jquery/jquery.min.js", "dist")
 
 #  watch for changes: ./make.js watch
 target.watch = ->
+  # html
+  gaze ["#{src}/index.html"], ->
+    this.on "changed", (e, file) ->
+      cp_html()
+
   # scripts
-  gaze [js_src + "/**/*.js", js_src + "/**/*.coffee"], ->
+  gaze ["#{js_src}/**/*.js", "#{js_src}/**/*.coffee"], ->
     this.on "all", (e, file) ->
       concat()
 
   # styles
-  gaze src + "/less/*.less", ->
+  gaze "#{src}/less/*.less", ->
     this.on "changed", (e, file) ->
-      compile_less(src + "/less/style.less", "dist/style.css")
+      compile_less("#{src}/less/style.less", "dist/style.css")
 
 
