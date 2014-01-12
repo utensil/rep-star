@@ -2,9 +2,7 @@ language: node_js
 node_js:
   - "0.10"
 before_install:
-  - npm -g install grunt-cli
   - npm -g install bower
-  - npm -g install karma
   - npm -g install coffee-script
   - bower install
   - phantomjs -v

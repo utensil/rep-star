@@ -11,20 +11,8 @@
     "components"
   ],
   "dependencies": {
-    "jquery": "~2.0.3",
-    "angular": "~1.2.1",
-    "angular-resource": "~1.2.1",
-    "angular-mocks": "~1.2.1",
-    "angular-sanitize": "~1.2.1",
-    "angular-scenario": "~1.2.1",
-    "requirejs": "~2.1.6",
-    "requirejs-domready": "~2.0.1",
-    "requirejs-text": "~2.0.7",
-    "requirejs-plugins": "~1.0.2",
-    "chai": "~1.7.0",
     "lodash": "~2.2.1",
-    "perfect-scrollbar": "~0.4.5",
-    "ngstorage": "~0.3.0",
-    "angular-route": "~1.2.1"
+    "jquery": "~1.10.2",
+    "riotjs": "latest"
   }
 }
