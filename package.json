@@ -5,7 +5,7 @@
   "author": "utensil <utensilcandel@gmail.com>",
   "repository": "git://github.com/utensil/rep-star",
   "scripts": {
-    "test": "make ci"
+    "test": "coffee make.coffee"
   },
   "devDependencies": {
     "lodash": "latest",
