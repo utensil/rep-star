@@ -69,6 +69,15 @@ cp_html = ->
   console.log "cp_html"
   cp '-rf', ["#{src}/index.html"], 'dist/'
 
+
+cp_jslibs = ->
+  console.log "cp_jslibs"
+  cp("-f", [
+    "#{js_libs}/jquery/jquery.min.js"
+    "#{js_libs}/q/q.js"
+    "#{js_libs}/lodash/dist/lodash.min.js"
+  ], "dist")
+
 # Test the API on server side (node.js)
 target.test = ->
 
@@ -97,8 +106,8 @@ target.gen = ->
   init()
   concat()
   cp_html()
+  cp_jslibs()
   compile_less("#{src}/less/style.less", "dist/style.css")
-  cp("-f", "#{js_libs}/jquery/jquery.min.js", "dist")
 
 #  watch for changes: ./make.js watch
 target.watch = ->

@@ -20,6 +20,14 @@
 <div></div>
 <!-- scripts -->
 <script src="jquery.min.js"></script>
+<script src="q.js"></script>
+<script src="lodash.min.js"></script>
 <script src="rep-star.js"></script>
+<!-- initialize application -->
+<script>
+  app({
+    page: location.hash.slice(2)
+  })
+</script>
 </body>
 </html>
