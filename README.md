@@ -6,11 +6,11 @@ Rep Star
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/utensil/rep-star/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 A nearly backendless HTML5 app to manage starred repositories of Github and more.
-
-Rationale
+  
+rationale
 -----------
 
-For rationale regarding this project, please refer to [the master branch](), here describes why a "lite" branch:
+For rationale regarding this project, please refer to [the master branch](https://github.com/utensil/rep-star/tree/master) , here describes why a "lite" branch:
 
 AngularJS is heavy, Karma is heavy, RequireJS is cubersome, I'm kind of losing the fun compared to writing jQuery, and feels like being prisoned. The asset pipeline used in the master branch is heavy: grunt, temp files, oh no.
 
