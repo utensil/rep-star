@@ -13,6 +13,7 @@
     "shelljs": "latest",
     "gaze": "latest",
     "less": "latest",
-    "coffee-script": "latest"
+    "coffee-script": "latest",
+    "q": "latest"
   }
 }

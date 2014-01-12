@@ -80,14 +80,13 @@ cp_jslibs = ->
 
 # Test the API on server side (node.js)
 target.test = ->
-
   init()
 
   # generate API files
-  (header + cat("#{src}/api/*.js") + footer).to("dist/api.js")
+  (header + coffee_or_js("#{js_src}/api/*") + footer).to("dist/api.js")
 
   # run tests
-  require("./test/index.js")
+  require("./test/index.coffee")
 
 target.all = ->
   target.lint()
