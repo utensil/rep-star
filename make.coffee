@@ -93,7 +93,7 @@ target.all = ->
   target.gen()
 
 target.lint = ->
-  exec "jshint --exclude #{js_libs}/**/*.js #{js_src}"
+  exec "jshint #{js_src}"
   exec "coffeelint make.coffee"
   exec "coffeelint #{js_src}"
 
