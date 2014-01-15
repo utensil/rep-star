@@ -27,8 +27,7 @@ Tech Choices
 ### Toolchain
 
 * [Bower](http://bower.io/) for browser js package management
-* [RequireJS](requirejs.org) for AMD style module management
-* [Harp](http://harpjs.com/) for rapid develpoment and compiling
+* [ShellJS](https://github.com/arturadib/shelljs) for compiling
 
 ### Framework
 
@@ -37,7 +36,7 @@ Tech Choices
 ### Languages
 
 * [Jade](http://jade-lang.com/) for HTML?
-* [CoffeeScript](http://coffeescript.org/) for JavaScritping
+* [CoffeeScript](http://coffeescript.org/) for JavaScripting
 * [Less](http://lesscss.org/) for CSS
 
 ### API
