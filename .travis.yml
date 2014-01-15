@@ -7,5 +7,4 @@ before_install:
   - npm install -g jshint
   - npm install -g coffeelint
   - bower install
-  - phantomjs -v
 

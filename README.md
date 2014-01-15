@@ -56,18 +56,13 @@ Installation
 ```
   # install global npm dependencies
   npm -g install bower
-  #npm -g install harp
-  
+  npm install -g coffee-script
+  npm install -g jshint
+  npm install -g coffeelint
+
   # get bower dependencies
   bower install
-  
-  # also to be able to run tests from cli
-  # without browser window popping
-  # consider to install PhantomJS
-  http://phantomjs.org/download.html
-  phantomjs -v
 
   # get npm dependencies
   npm install
 ```
-
