@@ -22,11 +22,16 @@
 <script src="jquery.min.js"></script>
 <script src="q.js"></script>
 <script src="lodash.min.js"></script>
+<script src="oauth.js"></script>
 <script src="rep-star.js"></script>
 <!-- initialize application -->
 <script>
   app({
-    page: location.hash.slice(2)
+    page: location.hash.slice(2),
+    github_params: {
+      oauth_key: "h-dZ4aahHsuqamiK-VjvIvnthhI"
+      //access_token: "ae93c8acd01729c031da017c50f484880c7c1387"
+    }    
   })
 </script>
 </body>

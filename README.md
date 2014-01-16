@@ -59,6 +59,7 @@ Installation
   npm install -g coffee-script
   npm install -g jshint
   npm install -g coffeelint
+  npm install -g http-server
 
   # get bower dependencies
   bower install

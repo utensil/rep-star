@@ -25,7 +25,7 @@ RepStar = (conf) ->
   # initialization
   backend.call("init", conf).then (data)->
     #self.user = new User(self, (if data then data.user else {}), backend)
-    self.user = new GithubUser(conf.github_params)
+    self.api = GithubAPI.create(conf.github_params)
     self.trigger("ready")
     self.trigger("load", data.view)
   .fail (err)->

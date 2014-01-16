@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-# grunt is messy, shelljs is not (https:# github.com/arturadib/shelljs)
+# grunt is messy, shelljs is not (https://github.com/arturadib/shelljs)
 
 require "shelljs/make"
 
@@ -76,6 +76,7 @@ cp_jslibs = ->
     "#{js_libs}/jquery/jquery.min.js"
     "#{js_libs}/q/q.js"
     "#{js_libs}/lodash/dist/lodash.min.js"
+    "#{js_src}/vendor/oauthio/oauth.js"
   ], "dist")
 
 # Test the API on server side (node.js)

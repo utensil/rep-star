@@ -6,10 +6,19 @@ rep_star = api.app
 # run the tests
 rep_star (app) ->
   it "Should have proper initial values", () ->
-    github_user = app.user
-    #console.log github_user
-    assert github_user != null, "github_user == null"
-    assert Q.isPromise(github_user), "github_user isn't a promise"
+    github_api = app.api
+    console.log github_api
+    assert github_api != null, "github_api == null"
+    assert Q.isPromise(github_api), "github_api isn't a promise"
+
+    github_api.invoke 'onUser', (errorThrown, data, jqXHR) ->
+      assert(errorThrown == null, "onUser error")
+      assert(data != null, "onUser data null")
+
+    github_api.invoke('user').then( (user) ->
+      #console.log user
+      assert user["login"] == "utensil-dummy", "user login incorrect"
+    ).done()
 
 rep_star(
   github_params:

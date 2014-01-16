@@ -14,6 +14,7 @@
     "gaze": "latest",
     "less": "latest",
     "coffee-script": "latest",
-    "q": "latest"
+    "q": "latest",
+    "request": "latest"
   }
 }
